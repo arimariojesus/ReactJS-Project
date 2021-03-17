@@ -1,0 +1,22 @@
+.container {
+  max-width: 1024px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 20px;
+  color: #d8ebe4;
+}
+
+.button-container {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  margin-bottom: 30px;
+}
+
+.search-container > div:first-child {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
