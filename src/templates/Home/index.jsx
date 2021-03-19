@@ -43,21 +43,16 @@ export const Home =  () => {
     setPage(nextPage);
   }
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
-  }
-
   return (
     <section className="container">
       <div className="search-container">
-        {!!searchValue && (
+        {/* {!!searchValue && (
           <div><strong>Search value: {searchValue}</strong></div>
-        )}
+        )} */}
 
         <SearchInput 
-          searchValue={searchValue}
-          handleChange={handleChange}
+          value={searchValue}
+          onChange={(search) => setSearchValue(search)}
         />
       </div>
 
