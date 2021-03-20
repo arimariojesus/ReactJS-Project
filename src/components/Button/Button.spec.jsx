@@ -38,4 +38,9 @@ describe('<Button />', () => {
     const button = screen.getByRole('button', { name: /load more/i });
     expect(button).toBeEnabled();
   });
+
+  it('should be enabled when disabled is false', () => {
+    const {container} = render(<Button text="Load more" disabled={false} />);
+    expect(container).toMatchSnapshot();
+  });
 });

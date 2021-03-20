@@ -8,8 +8,6 @@ export const SearchInput = ({ value, onChange }) => {
   const [searchValue, setDisplayValue] = useState(value);
   const debouncedChange = useDebounce(onChange, 500);
 
-  console.log(value);
-
   function handleChange(event) {
     setDisplayValue(event.target.value);
     debouncedChange(event.target.value);
