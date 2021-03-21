@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 import './styles.css';
 
@@ -7,7 +7,7 @@ import { loadPosts } from '../../utils/load-posts';
 import { Button } from '../../components/Button';
 import { SearchInput } from '../../components/SearchInput';
 
-export const Home =  () => {
+export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
@@ -16,20 +16,20 @@ export const Home =  () => {
 
   const noMorePosts = posts.length >= allPosts.length;
 
-  const filteredPosts = !!searchValue ? 
-  allPosts.filter(post => {
-    const value = searchValue.toLocaleLowerCase();
-    return post.title.toLowerCase().includes(value);
-  })
-  : posts;
+  const filteredPosts = searchValue
+    ? allPosts.filter((post) => {
+        const value = searchValue.toLocaleLowerCase();
+        return post.title.toLowerCase().includes(value);
+      })
+    : posts;
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
     const postsAndPhotos = await loadPosts();
 
     setPosts(postsAndPhotos.slice(page, postsPerPage));
     setAllPosts(postsAndPhotos);
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
     handleLoadPosts(0, postsPerPage);
   }, [handleLoadPosts, postsPerPage]);
@@ -41,7 +41,7 @@ export const Home =  () => {
 
     setPosts(posts);
     setPage(nextPage);
-  }
+  };
 
   return (
     <section className="container">
@@ -50,27 +50,14 @@ export const Home =  () => {
           <div><strong>Search value: {searchValue}</strong></div>
         )} */}
 
-        <SearchInput 
-          value={searchValue}
-          onChange={(search) => setSearchValue(search)}
-        />
+        <SearchInput value={searchValue} onChange={(search) => setSearchValue(search)} />
       </div>
 
-      {filteredPosts.length > 0 ? (
-        <Posts posts={filteredPosts} />
-      ) : (
-        <p>Nenhum post encontrado :( </p>
-      )}
+      {filteredPosts.length > 0 ? <Posts posts={filteredPosts} /> : <p>Nenhum post encontrado :( </p>}
 
       <div className="button-container">
-        {!searchValue && (
-          <Button 
-            text="Load more"
-            onClick={loadMorePosts} 
-            disabled={noMorePosts}  
-          />
-        )}
+        {!searchValue && <Button text="Load more" onClick={loadMorePosts} disabled={noMorePosts} />}
       </div>
     </section>
   );
-}
+};

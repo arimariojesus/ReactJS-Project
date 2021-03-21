@@ -4,6 +4,18 @@ exports[`<Button /> should be enabled when disabled is false 1`] = `
 <div>
   <button
     class="button"
+    disabled=""
+  >
+    Load more
+  </button>
+</div>
+`;
+
+exports[`<Button /> should match snapshot 1`] = `
+<div>
+  <button
+    class="button"
+    disabled=""
   >
     Load more
   </button>

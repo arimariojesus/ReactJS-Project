@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import P from 'prop-types';
 
 import './styles.css';
 
@@ -14,7 +15,7 @@ export const SearchInput = ({ value, onChange }) => {
   }
 
   return (
-    <input 
+    <input
       className="search-input"
       onChange={handleChange}
       value={searchValue}
@@ -22,4 +23,9 @@ export const SearchInput = ({ value, onChange }) => {
       placeholder="Type your search"
     />
   );
-}
+};
+
+SearchInput.propTypes = {
+  value: P.string.isRequired,
+  onChange: P.func.isRequired,
+};

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SearchInput /> should call handleChange function on each key pressed 1`] = `
+exports[`<SearchInput /> should match snapshot 1`] = `
 <div>
   <input
     class="search-input"
