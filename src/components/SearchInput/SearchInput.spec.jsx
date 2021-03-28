@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { SearchInput } from '.';
@@ -13,19 +13,19 @@ describe('<SearchInput />', () => {
     expect(input.value).toBe('testando');
   });
 
-  it('should call handleChange function on each key pressed', () => {
+  it('should call handleChange function on each key pressed', async () => {
     const fn = jest.fn();
-    render(<SearchInput value="any value" onChange={fn} />);
+    render(<SearchInput value="" onChange={fn} />);
 
     const input = screen.getByPlaceholderText(/type your search/i);
     const value = 'any value';
 
     userEvent.type(input, value);
 
-    setTimeout(() => {
+    await waitFor(() => {
       expect(input.value).toBe('any value');
       expect(fn).toHaveBeenCalledTimes(1);
-    }, 500);
+    });
   });
 
   it('should match snapshot', () => {

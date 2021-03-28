@@ -53,7 +53,7 @@ export const Home = () => {
         <SearchInput value={searchValue} onChange={(search) => setSearchValue(search)} />
       </div>
 
-      {filteredPosts.length > 0 ? <Posts posts={filteredPosts} /> : <p>Nenhum post encontrado :( </p>}
+      {filteredPosts.length > 0 ? <Posts posts={filteredPosts} /> : <p>Nenhum post encontrado :(</p>}
 
       <div className="button-container">
         {!searchValue && <Button text="Load more" onClick={loadMorePosts} disabled={noMorePosts} />}
